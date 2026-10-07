@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MD Rayhan Uddin Majumder | Portfolio</title>
+  <meta name="description" content="Portfolio of MD Rayhan Uddin Majumder: experience, skills and projects.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <button class="nav-toggle" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav id="nav" aria-label="Main">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+    </nav>
+    <div class="progress" id="progress"></div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap">
+        <h1>MD Rayhan Uddin<br>Majumder</h1>
+        <p class="lead">I'm good with <span id="rotator" class="rotator">people</span>.<br>Based in the north east of England.</p>
+        <div class="actions">
+          <button type="button" class="button open-contact">Email me</button>
+          <a class="button ghost" href="#experience">See my experience</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="block alt">
+      <div class="wrap">
+        <h2>About me</h2>
+        <p class="intro">I do my best work with other people, whether that's talking to customers or solving a problem as part of a team. Pick a topic to see what I mean.</p>
+        <div class="tabs" role="tablist" aria-label="About me topics">
+          <button role="tab" class="tab" aria-selected="true" aria-controls="about-people" id="t-people">People</button>
+          <button role="tab" class="tab" aria-selected="false" aria-controls="about-team" id="t-team">Teamwork</button>
+          <button role="tab" class="tab" aria-selected="false" aria-controls="about-problem" id="t-problem">Problem solving</button>
+        </div>
+        <div class="panel" id="about-people" role="tabpanel" aria-labelledby="t-people">
+          <h3>Face-to-face is where I'm most comfortable</h3>
+          <p>Sales, volunteering with BHS and the NHS young persons' group have all built my communication and customer service skills, and my confidence talking to new people.</p>
+        </div>
+        <div class="panel" id="about-team" role="tabpanel" aria-labelledby="t-team" hidden>
+          <h3>I work best as part of a team</h3>
+          <p>On my CyberFirst Horizons work experience I completed team-based tasks and networked with people, which strengthened my teamwork.</p>
+        </div>
+        <div class="panel" id="about-problem" role="tabpanel" aria-labelledby="t-problem" hidden>
+          <h3>I enjoy a good problem</h3>
+          <p>From cyber security activities to computer science and maths, I'm drawn to problem-solving. I'm building my Python and MySQL skills as I go.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="block">
+      <div class="wrap">
+        <h2>Skills</h2>
+        <p class="intro">Filter by type, then select a skill to see where I've used it.</p>
+        <div class="filters" role="group" aria-label="Filter skills">
+          <button class="filter" data-filter="all" aria-pressed="true">All</button>
+          <button class="filter" data-filter="people" aria-pressed="false">People</button>
+          <button class="filter" data-filter="technical" aria-pressed="false">Technical</button>
+        </div>
+        <div class="chips" id="chips"></div>
+        <p class="detail" id="skill-detail" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section id="experience" class="block alt">
+      <div class="wrap">
+        <h2>Experience</h2>
+        <ol class="timeline">
+          <li class="reveal">
+            <p class="date">September 2026 to present</p>
+            <h3>Sales Executive</h3>
+            <p>Winning new customers through face-to-face conversations. Building customer engagement skills, confidence and sales technique.</p>
+          </li>
+          <li class="reveal">
+            <p class="date">July to August 2025</p>
+            <h3>CyberFirst Horizons work experience</h3>
+            <p>Completed cyber security activities, worked on team-based tasks and networked with people. Earned the CyberFirst Horizons certificate and developed teamwork and people skills.</p>
+          </li>
+          <li class="reveal">
+            <p class="date">June 2025 to May 2026</p>
+            <h3>Member, NHS Young Persons' Group</h3>
+            <p>Took part in group discussions and decisions. Developed communication, decision-making and people skills.</p>
+          </li>
+          <li class="reveal">
+            <p class="date">November 2024 to March 2025</p>
+            <h3>Volunteer, BHS</h3>
+            <p>Helped customers in a volunteer role. Developed customer service and communication skills.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="projects" class="block">
+      <div class="wrap">
+        <h2>Projects</h2>
+        <div class="projects">
+          <article class="reveal">
+            <h3>Adaptive quiz app</h3>
+            <p>A quiz application that adapts to the person using it. <span class="todo">Add a sentence on how it works and the tools you used.</span></p>
+          </article>
+          <article class="reveal">
+            <h3>Brain-computer interfaces</h3>
+            <p>An in-depth study of brain-computer interfaces, presented as a written essay, a logbook and a presentation. <span class="todo">Add a sentence on what you found.</span></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="education" class="block alt">
+      <div class="wrap">
+        <h2>Education</h2>
+        <div class="tabs" role="tablist" aria-label="Qualifications">
+          <button role="tab" class="tab" aria-selected="true" aria-controls="edu-a" id="t-a">A Level</button>
+          <button role="tab" class="tab" aria-selected="false" aria-controls="edu-g" id="t-g">GCSE</button>
+        </div>
+        <div class="panel" id="edu-a" role="tabpanel" aria-labelledby="t-a">
+          <ul class="plain"><li>Mathematics</li><li>Computer Science</li><li>Business</li><li>Bengali</li><li>Extended Project Qualification (EPQ)</li></ul>
+        </div>
+        <div class="panel" id="edu-g" role="tabpanel" aria-labelledby="t-g" hidden>
+          <ul class="plain"><li>Mathematics</li><li>Computer Science</li><li>Combined Science</li><li>Bengali</li><li>English Language</li></ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <p>Want to work together or just say hello?</p>
+      <button type="button" class="button open-contact">Get in touch</button>
+      <p class="small">&copy; <span id="year"></span> MD Rayhan Uddin Majumder</p>
+    </div>
+  </footer>
+
+  <dialog id="contact" aria-labelledby="contact-title">
+    <div class="dlg-head">
+      <h2 id="contact-title">Get in touch</h2>
+      <button type="button" class="close" id="close-contact" aria-label="Close">&times;</button>
+    </div>
+    <p class="muted">Email me at</p>
+    <p class="email" id="email-text">08rayhan.uddin@gmail.com</p>
+    <div class="actions">
+      <button type="button" class="button" id="copy-email">Copy email</button>
+    </div>
+    <hr>
+    <form id="contact-form" novalidate>
+      <label for="c-name">Your name</label>
+      <input id="c-name" name="name" autocomplete="name">
+      <label for="c-msg">Message</label>
+      <textarea id="c-msg" name="message" rows="4" required></textarea>
+      <button type="submit" class="button ghost">Open in my mail app</button>
+    </form>
+    <p class="status" id="contact-status" role="status"></p>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
