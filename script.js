@@ -6,7 +6,7 @@ const NS = "http://www.w3.org/2000/svg";
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 
 // Add your own links here. Anything left empty is hidden.
-const LINKS = { linkedin: "", github: "" };
+const LINKS = { linkedin: "https://www.linkedin.com/in/rayhan-uddin-majumder-5ba302374", github: "" };
 
 // Turn off the heaviest effects on slower devices
 const lowPower = (navigator.hardwareConcurrency || 8) <= 4 || (navigator.deviceMemory || 8) <= 2 || !!(navigator.connection && navigator.connection.saveData);
@@ -447,97 +447,8 @@ filters.forEach((f) => f.addEventListener("click", () => {
 }));
 renderSkills("all");
 
-// ---------- Contact dialog ----------
-const EMAIL = "08rayhan.uddin@gmail.com";
-const dialog = document.getElementById("contact-dlg");
-const statusEl = document.getElementById("contact-status");
-const form = document.getElementById("contact-form");
-const msg = document.getElementById("c-msg");
-
+// ---------- Contact (LinkedIn) ----------
 function openDialog(d) { if (typeof d.showModal === "function") d.showModal(); else d.setAttribute("open", ""); }
-document.querySelectorAll(".open-contact").forEach((b) => b.addEventListener("click", () => { statusEl.textContent = ""; openDialog(dialog); }));
-document.getElementById("close-contact").addEventListener("click", () => dialog.close());
-dialog.addEventListener("click", (e) => { if (e.target === dialog) dialog.close(); });
-
-document.getElementById("copy-email").addEventListener("click", async () => {
-  try {
-    await navigator.clipboard.writeText(EMAIL);
-    statusEl.textContent = "\u2713 Email copied. You can paste it into your mail app.";
-  } catch (err) {
-    const range = document.createRange();
-    range.selectNodeContents(document.getElementById("email-text"));
-    const sel = window.getSelection();
-    sel.removeAllRanges();
-    sel.addRange(range);
-    statusEl.textContent = "Press Ctrl+C (or Cmd+C) to copy the selected email.";
-  }
-});
-
-// HOW MESSAGES REACH YOU
-// Option A (recommended, most reliable): Web3Forms. Go to web3forms.com, enter 08rayhan.uddin@gmail.com,
-// and they email you an "access key". Paste it between the quotes below. It is safe to keep in public code.
-// Every message from the form then arrives in your inbox straight away, with no activation step.
-const WEB3FORMS_KEY = "";
-// Option B (used while the key above is empty): FormSubmit. It only works on the live, hosted site (not a
-// file on your computer), and the very first message triggers an activation email you must click.
-const FORM_ENDPOINT = "https://formsubmit.co/ajax/" + EMAIL;
-const emailField = document.getElementById("c-email");
-const sendBtn = document.getElementById("send-btn");
-const nameField = document.getElementById("c-name");
-
-function fail(el, text) {
-  el.classList.add("invalid");
-  el.setAttribute("aria-invalid", "true");
-  el.focus();
-  statusEl.textContent = text;
-}
-[msg, emailField].forEach((el) => el.addEventListener("input", () => {
-  el.classList.remove("invalid");
-  el.removeAttribute("aria-invalid");
-}));
-
-function mailtoUrl() {
-  const name = nameField.value.trim();
-  const from = emailField.value.trim();
-  const body = msg.value.trim() + (name || from ? "\n\nFrom " + [name, from].filter(Boolean).join(", ") : "");
-  return "mailto:" + EMAIL + "?subject=" + encodeURIComponent("Message from your portfolio") + "&body=" + encodeURIComponent(body);
-}
-
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  if (!msg.value.trim()) return fail(msg, "Write a short message first.");
-  if (!emailField.value.trim() || !emailField.validity.valid) return fail(emailField, "Enter a valid email so I can reply.");
-  sendBtn.disabled = true;
-  sendBtn.textContent = "Sending...";
-  statusEl.textContent = "";
-  try {
-    if (form.elements._honey && form.elements._honey.value) { form.reset(); statusEl.textContent = "Thanks, your message has been sent."; sendBtn.disabled = false; sendBtn.textContent = "Send message"; return; }
-    let res, data;
-    if (WEB3FORMS_KEY) {
-      res = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({ access_key: WEB3FORMS_KEY, subject: "New message from your portfolio", from_name: nameField.value.trim() || "Portfolio visitor", name: nameField.value.trim(), email: emailField.value.trim(), message: msg.value.trim() })
-      });
-      data = await res.json().catch(() => ({}));
-      if (!res.ok || String(data.success) !== "true") throw new Error("Not delivered");
-    } else {
-      res = await fetch(FORM_ENDPOINT, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } });
-      data = await res.json().catch(() => ({}));
-      if (!res.ok || String(data.success) === "false") throw new Error("Not delivered");
-    }
-    form.reset();
-    statusEl.textContent = "Thanks, your message has been sent.";
-  } catch (err) {
-    statusEl.textContent = "Sorry, that didn\u2019t send. ";
-    const a = document.createElement("a");
-    a.href = mailtoUrl();
-    a.textContent = "Open it in your mail app instead";
-    statusEl.appendChild(a);
-  }
-  sendBtn.disabled = false;
-  sendBtn.textContent = "Send message";
-});
 
 // ---------- Project dialogs ----------
 const projects = {
@@ -787,7 +698,7 @@ function setupMiniQuiz(box) {
 
 // ---------- Links and footer ----------
 const socials = document.getElementById("socials");
-[["LinkedIn", LINKS.linkedin], ["GitHub", LINKS.github]].forEach(([name, url]) => {
+[["GitHub", LINKS.github]].forEach(([name, url]) => {
   if (!url) return;
   const a = document.createElement("a");
   a.href = url; a.target = "_blank"; a.rel = "noopener noreferrer"; a.textContent = name;
@@ -811,13 +722,12 @@ const commands = [
   { label: "Go to Interests", icon: "sparkles", run: () => goTo("#interests") },
   { label: "Open Hazard Ready (live site)", icon: "right", run: () => window.open("https://ryhnuu.github.io/Hazard-Perception-Practice/", "_blank", "noopener") },
   { label: "Open Hazard Ready details", icon: "bulb", run: () => openProject("hazard") },
-  { label: "Email me", icon: "mail", run: () => { statusEl.textContent = ""; openDialog(dialog); } },
+  { label: "Contact me on LinkedIn", icon: "right", run: () => window.open(LINKS.linkedin, "_blank", "noopener") },
   { label: "Open the adaptive quiz app", icon: "bulb", run: () => openProject("quiz") },
   { label: "Open brain-computer interfaces", icon: "cpu", run: () => openProject("bci") },
   { label: "Switch light or dark theme", icon: "sun", run: () => themeBtn.click() },
   { label: "Back to top", icon: "up", run: () => window.scrollTo({ top: 0, behavior: scrollBehavior }) }
 ];
-if (LINKS.linkedin) commands.push({ label: "Open LinkedIn", icon: "right", run: () => window.open(LINKS.linkedin, "_blank", "noopener") });
 if (LINKS.github) commands.push({ label: "Open GitHub", icon: "right", run: () => window.open(LINKS.github, "_blank", "noopener") });
 
 let shown = [], active = 0;

@@ -37,6 +37,7 @@
     <symbol id="i-cap" viewBox="0 0 24 24"><path d="m22 10-10-5L2 10l10 5z"/><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5M22 10v6"/></symbol>
     <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></symbol>
     <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></symbol>
+    <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></symbol>
     <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></symbol>
     <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></symbol>
     <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14M19 12l-7 7-7-7"/></symbol>
@@ -92,7 +93,7 @@
         <div class="hero-text">
           <h1 id="name" aria-label="MD Rayhan Uddin Majumder"><span class="line">MD Rayhan</span><span class="line">Uddin</span><span class="line g">Majumder</span></h1>
           <div class="actions">
-            <button type="button" class="button open-contact"><svg class="i" aria-hidden="true"><use href="#i-mail"/></svg> Email me</button>
+            <a class="button" href="https://www.linkedin.com/in/rayhan-uddin-majumder-5ba302374" target="_blank" rel="noopener noreferrer"><svg class="i" aria-hidden="true"><use href="#i-linkedin"/></svg> Contact me</a>
             <a class="button ghost" href="#projects">See my projects <svg class="i" aria-hidden="true"><use href="#i-ur"/></svg></a>
           </div>
         </div>
@@ -245,8 +246,8 @@
     <div class="wrap foot">
       <p class="eyebrow"><span>08</span> Contact</p>
       <h2 class="mega" data-split>Let’s talk</h2>
-      <p class="foot-sub">Want to work together or just say hello?</p>
-      <button type="button" class="button big open-contact"><svg class="i" aria-hidden="true"><use href="#i-mail"/></svg> Get in touch</button>
+      <p class="foot-sub">Want to work together or just say hello? Message me on LinkedIn.</p>
+      <a class="button big" href="https://www.linkedin.com/in/rayhan-uddin-majumder-5ba302374" target="_blank" rel="noopener noreferrer"><svg class="i" aria-hidden="true"><use href="#i-linkedin"/></svg> Contact me</a>
       <div class="socials" id="socials" hidden></div>
       <p class="tip">Tip: press <kbd>/</kbd> to jump anywhere on the page</p>
       <p class="small">&copy; <span id="year"></span> MD Rayhan Uddin Majumder</p>
@@ -264,35 +265,6 @@
       <button type="button" class="close" id="close-project" aria-label="Close">&times;</button>
     </div>
     <div id="p-body"></div>
-  </dialog>
-
-  <dialog id="contact-dlg" aria-labelledby="contact-title">
-    <div class="dlg-head">
-      <h2 id="contact-title">Get in touch</h2>
-      <button type="button" class="close" id="close-contact" aria-label="Close">&times;</button>
-    </div>
-    <p class="muted">Email me at</p>
-    <p class="email" id="email-text">08rayhan.uddin@gmail.com</p>
-    <div class="actions">
-      <button type="button" class="button" id="copy-email"><svg class="i" aria-hidden="true"><use href="#i-copy"/></svg> Copy email</button>
-    </div>
-    <hr>
-    <form id="contact-form" novalidate>
-      <label for="c-name">Your name</label>
-      <input id="c-name" name="name" autocomplete="name">
-      <div id="email-row">
-        <label for="c-email">Your email (so I can reply)</label>
-        <input id="c-email" name="email" type="email" autocomplete="email" inputmode="email" required>
-      </div>
-      <label for="c-msg">Message</label>
-      <textarea id="c-msg" name="message" rows="4" required aria-describedby="contact-status"></textarea>
-      <input type="hidden" name="_subject" value="New message from your portfolio">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_template" value="table">
-      <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <button type="submit" class="button" id="send-btn">Send message</button>
-    </form>
-    <p class="status" id="contact-status" role="status"></p>
   </dialog>
 
   <dialog id="palette" aria-label="Jump to">
