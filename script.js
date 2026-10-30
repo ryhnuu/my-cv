@@ -473,9 +473,13 @@ document.getElementById("copy-email").addEventListener("click", async () => {
   }
 });
 
-// Messages are delivered to EMAIL through FormSubmit (a free form-to-email service, no account needed).
-// The first message ever sent triggers a one-time activation email to this address: open it and click
-// the confirm link, and every message after that arrives in the inbox like normal email.
+// HOW MESSAGES REACH YOU
+// Option A (recommended, most reliable): Web3Forms. Go to web3forms.com, enter 08rayhan.uddin@gmail.com,
+// and they email you an "access key". Paste it between the quotes below. It is safe to keep in public code.
+// Every message from the form then arrives in your inbox straight away, with no activation step.
+const WEB3FORMS_KEY = "";
+// Option B (used while the key above is empty): FormSubmit. It only works on the live, hosted site (not a
+// file on your computer), and the very first message triggers an activation email you must click.
 const FORM_ENDPOINT = "https://formsubmit.co/ajax/" + EMAIL;
 const emailField = document.getElementById("c-email");
 const sendBtn = document.getElementById("send-btn");
@@ -507,9 +511,21 @@ form.addEventListener("submit", async (e) => {
   sendBtn.textContent = "Sending...";
   statusEl.textContent = "";
   try {
-    const res = await fetch(FORM_ENDPOINT, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } });
-    const data = await res.json().catch(() => ({}));
-    if (!res.ok || String(data.success) === "false") throw new Error("Not delivered");
+    if (form.elements._honey && form.elements._honey.value) { form.reset(); statusEl.textContent = "Thanks, your message has been sent."; sendBtn.disabled = false; sendBtn.textContent = "Send message"; return; }
+    let res, data;
+    if (WEB3FORMS_KEY) {
+      res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ access_key: WEB3FORMS_KEY, subject: "New message from your portfolio", from_name: nameField.value.trim() || "Portfolio visitor", name: nameField.value.trim(), email: emailField.value.trim(), message: msg.value.trim() })
+      });
+      data = await res.json().catch(() => ({}));
+      if (!res.ok || String(data.success) !== "true") throw new Error("Not delivered");
+    } else {
+      res = await fetch(FORM_ENDPOINT, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } });
+      data = await res.json().catch(() => ({}));
+      if (!res.ok || String(data.success) === "false") throw new Error("Not delivered");
+    }
     form.reset();
     statusEl.textContent = "Thanks, your message has been sent.";
   } catch (err) {
